@@ -7,12 +7,12 @@ import (
 )
 
 func main() {
-	// 1️⃣ Ensure exactly one argument
+	// 1️Ensure exactly one argument
 	if len(os.Args) != 2 {
 		return
 	}
 
-	// 2️⃣ Get input argument
+	// 2️ Get input argument
 	input := os.Args[1]
 
 	// Convert literal "\n" sequences to actual newlines
@@ -24,7 +24,7 @@ func main() {
 		return
 	}
 
-	// 4️⃣ Split banner into lines
+	// 4️Split banner into lines
 	banner := strings.Split(string(data), "\n")
 
 	// Fix shadow banner offset if first line is empty
@@ -32,10 +32,10 @@ func main() {
 		banner = banner[1:]
 	}
 
-	// 5️⃣ Split input into lines by actual newline
+	// 5️ Split input into lines by actual newline
 	lines := strings.Split(input, "\n")
 
-	// 6️⃣ Print each line in ASCII art
+	// 6️Print each line in ASCII art
 	for _, line := range lines {
 
 		// If the line is empty, print 8 empty rows (height of a character)
