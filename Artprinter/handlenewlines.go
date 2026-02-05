@@ -8,5 +8,5 @@ func CheckOnlyNewLines(input []string) bool {
 			found = false
 		}
 	}
-	return found
+	return found //
 }
