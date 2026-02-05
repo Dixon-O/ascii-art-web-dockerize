@@ -1,37 +1,24 @@
 package main
 
 import (
-	artprinter "ascii-art/Artprinter"
+	"ascii-art/handlers"
 	"fmt"
-	"os"
-	"strings"
+	"log"
+	"net/http"
 )
 
 func main() {
-	//if arguments are not as required stop program
-	if len(os.Args) != 2 || os.Args[1] == "" {
-		return
-	}
-	//handle new line characters
-	input := strings.Split(strings.ReplaceAll(os.Args[1], `\n`, "\n"), "\n")
-	foundNewLinesOnly := artprinter.CheckOnlyNewLines(input)
-	if foundNewLinesOnly {
-		for i := range input[:len(input)-1] {
-			fmt.Println()
-			if i == len(input[:len(input)-1])-1 {
-				return
-			}
-		}
-	}
-	//read the standard.txt banner file
-	data, err := os.ReadFile("banners/standard.txt")
+	// Initialize templates
+	err := handlers.InitTemplates()
 	if err != nil {
-		fmt.Println("error reading file")
-		os.Exit(1)
+		log.Fatal("Error loading templates:", err)
 	}
-	banner := strings.Split(string(data), "\n")
 
-	//printing the Ascii art
-	fmt.Println(artprinter.PrintAsciiArt(input, banner))
+	// Register routes
+	http.HandleFunc("/", handlers.HomeHandler)
+	http.HandleFunc("/ascii-art", handlers.AsciiArtHandler)
 
+	// Start server
+	fmt.Println("Server starting on http://localhost:8080")
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
