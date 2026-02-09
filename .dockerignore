@@ -1,0 +1,5 @@
+.git
+*.md
+*_test.go
+TESTING_TODO.md
+DOCKER_TEAM_PLAN.md
