@@ -1,0 +1,13 @@
+
+
+services:
+  ascii-art-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ascii-art-web:latest
+    container_name: ascii-art-web
+
+    ports:
+      - "8080:8080"
+ 

@@ -61,3 +61,34 @@ ascii-art/
     ├── shadow.txt
     └── thinkertoy.txt
 ```
+
+#### Dockerized Version
+
+This application can also be run as a Docker container, allowing it to be deployed and executed without instaling Go or managing dependencies locally.
+
+The Go application is compiled and run inside a Docker container.
+The web server is exposed on port 8080
+Banner files and HTML templates are bundled into the image.
+
+##### Building the Docker image
+
+
+From the project directory run the following command on the terminal. 
+sudo docker buildx build -t ascii-web-image .
+
+
+##### # Run The Container
+First Check if there are any other images that may conflict with yours 
+sudo docker ps -a
+To remove any conflicting images use 
+sudo docker rm -f <<name of the image or container>>
+
+Run your container using
+sudo docker compose up
+
+##### ## Docker image Metadata
+
+To get the metadata run 
+sudo docker inspect ascii-art-web --format='{{Config.Lables}}'
+
+
